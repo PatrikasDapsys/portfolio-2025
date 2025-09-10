@@ -1,21 +1,13 @@
-<script setup lang="ts"></script>
-
 <template>
-  <main id="app">
-    <div class="test">
-      <div class="test2">AHAHH</div>
-      wassup
-      <i class="fa-solid fa-house"></i>
-    </div>
-  </main>
+  <div>
+    <Hero />
+  </div>
 </template>
 
-<style scoped lang="scss">
-.test {
-  background: red;
+<script setup lang="ts">
+import Hero from './pages/Hero.vue'
+</script>
 
-  .test2 {
-    color: blue;
-  }
-}
+<style lang="scss">
+@import './styles/base';
 </style>
