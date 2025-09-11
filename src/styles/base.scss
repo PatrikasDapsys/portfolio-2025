@@ -4,9 +4,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-weight: unset;
 }
 
 body {
+  font-family: 'Noto Sans', sans-serif;
   background-color: colors.$base-background-color;
   color: colors.$base-text-color;
+  font-weight: 100;
 }

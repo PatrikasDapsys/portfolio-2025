@@ -30,12 +30,14 @@ const formattedHeight = computed(() => formatMeasurement(props.height, props.hei
 
 <style scoped lang="scss">
 @use '../styles/partials/z-index';
+@use '../styles/partials/colors';
 
 .mask {
+  background-color: colors.$base-background-color;
+  border: 1px solid red;
   z-index: z-index.$mask-z-index;
   width: v-bind(formattedWidth);
   height: v-bind(formattedHeight);
-  background: red;
   position: absolute;
   top: 0;
   left: 0;
