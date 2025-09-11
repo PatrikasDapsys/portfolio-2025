@@ -3,20 +3,38 @@
 </template>
 
 <script setup lang="ts">
+import { MeasurementsEnum } from '@/enums/measurements'
 import { computed } from 'vue'
 
 const props = defineProps<{
-  width: string
-  height: string
+  width: number
+  height: number
+  widthMeasurement: MeasurementsEnum
+  heightMeasurement: MeasurementsEnum
 }>()
 
-const width = computed(() => props.width)
+const unitMap: Record<MeasurementsEnum, MeasurementsEnum> = {
+  [MeasurementsEnum.PERCENTAGE]: MeasurementsEnum.PERCENTAGE,
+  [MeasurementsEnum.PX]: MeasurementsEnum.PX,
+}
+
+const formatMeasurement = (value: number, measurement: MeasurementsEnum) => {
+  const unit = unitMap[measurement]
+
+  return unit ? `${value}${unit}` : null
+}
+
+const formattedWidth = computed(() => formatMeasurement(props.width, props.widthMeasurement))
+const formattedHeight = computed(() => formatMeasurement(props.height, props.heightMeasurement))
 </script>
 
 <style scoped lang="scss">
+@use '../styles/partials/z-index';
+
 .mask {
-  width: v-bind(width);
-  height: v-bind(height);
+  z-index: z-index.$mask-z-index;
+  width: v-bind(formattedWidth);
+  height: v-bind(formattedHeight);
   background: red;
   position: absolute;
   top: 0;

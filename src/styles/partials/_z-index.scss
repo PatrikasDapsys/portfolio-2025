@@ -1,0 +1,15 @@
+$layer-0: layer-0;
+$layer-1: layer-1;
+$layer-2: layer-2;
+
+$z-index-map: (#{$layer-0}: 0, #{$layer-1}: 10, #{$layer-2}: 20);
+
+@function set-z-index($layer-name) {
+  $z-index: map-get($z-index-map, $layer-name);
+  @if $z-index == null {
+    @error "Unknown z-index layer `#{$layer-name}`. Available: #{map-keys($z-index-map)}";
+  }
+  @return $z-index;
+}
+
+$mask-z-index: set-z-index($layer-1);

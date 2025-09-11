@@ -9,5 +9,5 @@ import Hero from './pages/Hero.vue'
 </script>
 
 <style lang="scss">
-@import './styles/base';
+@use './styles/base';
 </style>
