@@ -13,3 +13,8 @@ body {
   color: colors.$base-text-color;
   font-weight: 100;
 }
+
+a {
+  color: unset;
+  text-decoration: none;
+}
