@@ -10,26 +10,14 @@
         </p>
       </div>
       <ul class="hero-page__popups">
-        <li>
-          <Popup
-            iconClass="fa-solid fa-at"
-            link="mailto:me@patrikasdapsys.com"
-            hover-text="me@patrikasdapsys.com"
-          />
-        </li>
-        <li>
-          <i class="hero-page__popup fa-brands fa-github"></i>
-        </li>
-        <li>
-          <i class="hero-page__popup fa-brands fa-linkedin"></i>
-        </li>
-        <li>
-          <i class="hero-page__popup fa-regular fa-file-lines"></i>
+        <li v-for="entry in popupData">
+          <Popup :iconClass="entry.iconClass" :link="entry.link" :hoverText="entry.hoverText" />
         </li>
       </ul>
     </div>
     <div class="hero-page__section">
       <ul class="hero-page__links">
+        <!-- TODO -->
         <li>Tab 1</li>
         <li>Tab 2</li>
         <li>Tab 3</li>
@@ -39,12 +27,34 @@
         software engineer
       </h2>
     </div>
-    <!-- <Mask
-      :width="maskWidth"
-      :height="maskHeight"
+    <Mask
+      class="hero-page__mask--left"
+      :width="maskWidthVertical"
+      :height="maskHeightVertical"
       :width-measurement="MeasurementsEnum.PX"
       :height-measurement="MeasurementsEnum.PERCENTAGE"
-    /> -->
+    />
+    <Mask
+      class="hero-page__mask--right"
+      :width="maskWidthVertical"
+      :height="maskHeightVertical"
+      :width-measurement="MeasurementsEnum.PX"
+      :height-measurement="MeasurementsEnum.PERCENTAGE"
+    />
+    <Mask
+      class="hero-page__mask--top"
+      :width="maskWidthHorizontal"
+      :height="maskHeightHorizontal"
+      :width-measurement="MeasurementsEnum.PERCENTAGE"
+      :height-measurement="MeasurementsEnum.PX"
+    />
+    <Mask
+      class="hero-page__mask--bottom"
+      :width="maskWidthHorizontal"
+      :height="maskHeightHorizontal"
+      :width-measurement="MeasurementsEnum.PERCENTAGE"
+      :height-measurement="MeasurementsEnum.PX"
+    />
   </div>
 </template>
 
@@ -52,11 +62,14 @@
 import Mask from '@/components/Mask.vue'
 import { IdEnum } from '@/enums/id'
 import { MeasurementsEnum } from '@/enums/measurements'
+import { popupData } from '@/data/heroPopupData'
 import { ref } from 'vue'
 import Popup from './components/Popup.vue'
 
-const maskWidth = ref(40)
-const maskHeight = ref(100)
+const maskWidthVertical = ref(32)
+const maskHeightVertical = ref(100)
+const maskWidthHorizontal = ref(100)
+const maskHeightHorizontal = ref(32)
 </script>
 
 <style scoped lang="scss">
@@ -90,6 +103,8 @@ $mask-width: 32px;
 
   &__title {
     font-size: 72px;
+    line-height: 1;
+    padding-bottom: 8px;
 
     &--secondary {
       font-size: 96px;
@@ -120,6 +135,28 @@ $mask-width: 32px;
     display: flex;
     flex-direction: column;
     justify-content: end;
+  }
+
+  &__mask {
+    &--left {
+      left: 0;
+      top: 0;
+    }
+
+    &--right {
+      right: 0;
+      top: 0;
+    }
+
+    &--top {
+      top: 0;
+      left: 0;
+    }
+
+    &--bottom {
+      bottom: 0;
+      left: 0;
+    }
   }
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
   <a
     class="popup"
-    :href="link"
     target="_blank"
     rel="nofollow noopener noindex"
+    :aria-label="hoverText"
+    :href="link"
     :data-hover="hoverText"
   >
     <i :class="['popup__icon', iconClass]"></i>
@@ -11,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   iconClass: string
   link: string
   hoverText: string
@@ -40,6 +41,7 @@ $hover-text-padding: 6px;
     transform: scale(0.5);
     top: calc($hover-text-padding * -2);
     pointer-events: none;
+    white-space: nowrap;
   }
 
   &:hover {

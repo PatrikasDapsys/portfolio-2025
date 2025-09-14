@@ -1,5 +1,5 @@
 <template>
-  <div class="mask">s</div>
+  <div class="mask" :style="maskStyles"></div>
 </template>
 
 <script setup lang="ts">
@@ -13,19 +13,14 @@ const props = defineProps<{
   heightMeasurement: MeasurementsEnum
 }>()
 
-const unitMap: Record<MeasurementsEnum, MeasurementsEnum> = {
-  [MeasurementsEnum.PERCENTAGE]: MeasurementsEnum.PERCENTAGE,
-  [MeasurementsEnum.PX]: MeasurementsEnum.PX,
-}
-
 const formatMeasurement = (value: number, measurement: MeasurementsEnum) => {
-  const unit = unitMap[measurement]
-
-  return unit ? `${value}${unit}` : null
+  return `${value}${measurement}`
 }
 
-const formattedWidth = computed(() => formatMeasurement(props.width, props.widthMeasurement))
-const formattedHeight = computed(() => formatMeasurement(props.height, props.heightMeasurement))
+const maskStyles = computed(() => ({
+  width: formatMeasurement(props.width, props.widthMeasurement),
+  height: formatMeasurement(props.height, props.heightMeasurement),
+}))
 </script>
 
 <style scoped lang="scss">
@@ -33,13 +28,10 @@ const formattedHeight = computed(() => formatMeasurement(props.height, props.hei
 @use '../styles/partials/colors';
 
 .mask {
-  background-color: colors.$base-background-color;
-  border: 1px solid red;
+  /* background-color: colors.$base-background-color; */
+  background-color: red;
+  opacity: 0.2;
   z-index: z-index.$mask-z-index;
-  width: v-bind(formattedWidth);
-  height: v-bind(formattedHeight);
   position: absolute;
-  top: 0;
-  left: 0;
 }
 </style>
