@@ -15,3 +15,4 @@ $z-index-map: (#{$layer-0}: 0, #{$layer-1}: 10, #{$layer-2}: 20);
 }
 
 $mask-z-index: set-z-index($layer-1);
+$outer-text-z-index: set-z-index($layer-2);

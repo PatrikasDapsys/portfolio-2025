@@ -28,9 +28,7 @@ const maskStyles = computed(() => ({
 @use '../styles/partials/colors';
 
 .mask {
-  /* background-color: colors.$base-background-color; */
-  background-color: red;
-  opacity: 0.2;
+  background-color: colors.$base-background-color;
   z-index: z-index.$mask-z-index;
   position: absolute;
 }

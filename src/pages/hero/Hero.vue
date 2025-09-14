@@ -2,12 +2,8 @@
   <div :id="IdEnum.HERO" class="hero-page">
     <div class="hero-page__section">
       <div class="hero-page__text">
-        <h1 class="hero-page__title">Patrikas Dapšys</h1>
-        <p class="hero-page__subtitle">
-          I'm a <span class="keyword">Frontend software engineer</span> with a
-          <span class="keyword"> strong passion</span> for building web applications with
-          <span class="keyword"> great user experiences.</span>
-        </p>
+        <h1 class="hero-page__title">{{ FULL_NAME }}</h1>
+        <p class="hero-page__subtitle" v-html="SUBTITLE"></p>
       </div>
       <ul class="hero-page__popups">
         <li v-for="entry in popupData">
@@ -22,65 +18,46 @@
         <li>Tab 2</li>
         <li>Tab 3</li>
       </ul>
-      <h2 class="hero-page__title--secondary">
-        Frontend <br />
-        software engineer
-      </h2>
+      <h2 class="hero-page__title--secondary" v-html="TITLE"></h2>
     </div>
-    <Mask
-      class="hero-page__mask--left"
-      :width="maskWidthVertical"
-      :height="maskHeightVertical"
-      :width-measurement="MeasurementsEnum.PX"
-      :height-measurement="MeasurementsEnum.PERCENTAGE"
-    />
-    <Mask
-      class="hero-page__mask--right"
-      :width="maskWidthVertical"
-      :height="maskHeightVertical"
-      :width-measurement="MeasurementsEnum.PX"
-      :height-measurement="MeasurementsEnum.PERCENTAGE"
-    />
-    <Mask
-      class="hero-page__mask--top"
-      :width="maskWidthHorizontal"
-      :height="maskHeightHorizontal"
-      :width-measurement="MeasurementsEnum.PERCENTAGE"
-      :height-measurement="MeasurementsEnum.PX"
-    />
-    <Mask
-      class="hero-page__mask--bottom"
-      :width="maskWidthHorizontal"
-      :height="maskHeightHorizontal"
-      :width-measurement="MeasurementsEnum.PERCENTAGE"
-      :height-measurement="MeasurementsEnum.PX"
-    />
+    <!-- TODO: move these -->
+    <div class="hero-page__outer hero-page__outer--left">
+      {{ FULL_NAME }}
+    </div>
+    <div class="hero-page__outer hero-page__outer--right">
+      {{ FULL_NAME }}
+    </div>
+    <ThemeSwitcher class="hero-page__outer hero-page__outer--theme" />
   </div>
+  <MaskGroup />
 </template>
 
 <script setup lang="ts">
-import Mask from '@/components/Mask.vue'
 import { IdEnum } from '@/enums/id'
-import { MeasurementsEnum } from '@/enums/measurements'
 import { popupData } from '@/data/heroPopupData'
-import { ref } from 'vue'
 import Popup from './components/Popup.vue'
+import MaskGroup from './MaskGroup.vue'
+import ThemeSwitcher from './ThemeSwitcher.vue'
 
-const maskWidthVertical = ref(32)
-const maskHeightVertical = ref(100)
-const maskWidthHorizontal = ref(100)
-const maskHeightHorizontal = ref(32)
+const FULL_NAME = 'Patrikas Dapšys'
+const SUBTITLE = `
+    I'm a <span class="keyword">Frontend software engineer</span> with a
+  <span class="keyword"> strong passion</span> for building web applications with
+  <span class="keyword"> great user experiences.</span>
+`
+const TITLE = `
+  Frontend <br />
+  software engineer
+`
 </script>
 
 <style scoped lang="scss">
-@use '../../styles/partials/colors';
+@use '../../styles/partials/_colors';
+@use '../../styles/partials/_z-index';
 
 $mask-width: 32px;
-
-.keyword {
-  font-weight: 400;
-  font-style: italic;
-}
+$outer-text-horizontal-offset: -45px;
+$outer-text-vertical-offset: 88px;
 
 .hero-page {
   display: flex;
@@ -89,7 +66,7 @@ $mask-width: 32px;
   height: calc(100vh - $mask-width * 2);
   margin: $mask-width;
   padding: $mask-width;
-  border: 1px solid blue;
+  border: 2px solid colors.$base-text-color-dark;
 
   &__section {
     display: flex;
@@ -137,26 +114,40 @@ $mask-width: 32px;
     justify-content: end;
   }
 
-  &__mask {
+  &__outer {
+    position: absolute;
+    white-space: nowrap;
+    z-index: z-index.$outer-text-z-index;
+    font-weight: 800;
+    color: colors.$base-text-color-darkest;
+    filter: blur(0.5px);
+
     &--left {
-      left: 0;
-      top: 0;
+      left: $outer-text-horizontal-offset;
+      top: $outer-text-vertical-offset;
+      transform: rotate(270deg);
     }
 
     &--right {
-      right: 0;
-      top: 0;
+      right: $outer-text-horizontal-offset;
+      bottom: $outer-text-vertical-offset;
+      transform: rotate(90deg);
     }
 
-    &--top {
-      top: 0;
-      left: 0;
+    &--theme {
+      bottom: $outer-text-vertical-offset;
+      transform: rotate(270deg);
+      left: $outer-text-horizontal-offset;
     }
+  }
+}
+</style>
 
-    &--bottom {
-      bottom: 0;
-      left: 0;
-    }
+<style lang="scss">
+.hero-page {
+  .keyword {
+    font-weight: 400;
+    font-style: italic;
   }
 }
 </style>
