@@ -31,7 +31,7 @@
   </div>
   <MaskGroup />
 </template>
-
+<!-- TODO: mobile -->
 <script setup lang="ts">
 import { IdEnum } from '@/enums/id'
 import { popupData } from '@/data/heroPopupData'
@@ -58,6 +58,7 @@ const TITLE = `
 $mask-width: 32px;
 $outer-text-horizontal-offset: -45px;
 $outer-text-vertical-offset: 88px;
+$theme-switcher-vertical-offset: 4px;
 
 .hero-page {
   display: flex;
@@ -135,7 +136,7 @@ $outer-text-vertical-offset: 88px;
     }
 
     &--theme {
-      bottom: $outer-text-vertical-offset;
+      bottom: calc($outer-text-vertical-offset + $theme-switcher-vertical-offset);
       transform: rotate(270deg);
       left: $outer-text-horizontal-offset;
     }
