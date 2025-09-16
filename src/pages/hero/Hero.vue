@@ -14,9 +14,9 @@
     <div class="hero-page__section">
       <ul class="hero-page__links">
         <!-- TODO -->
-        <li>Tab 1</li>
-        <li>Tab 2</li>
-        <li>Tab 3</li>
+        <li class="hero-page__link">Experience</li>
+        <li class="hero-page__link">Project</li>
+        <li class="hero-page__link">Contact</li>
       </ul>
       <h2 class="hero-page__title--secondary" v-html="TITLE"></h2>
     </div>
@@ -54,8 +54,10 @@ const TITLE = `
 <style scoped lang="scss">
 @use '../../styles/partials/_colors';
 @use '../../styles/partials/_z-index';
+@use '../../styles/partials/_breakpoints';
 
 $mask-width: 32px;
+$sm-hero-padding: 16px;
 $outer-text-horizontal-offset: -45px;
 $outer-text-vertical-offset: 88px;
 $theme-switcher-vertical-offset: 4px;
@@ -66,8 +68,12 @@ $theme-switcher-vertical-offset: 4px;
   justify-content: space-between;
   height: calc(100vh - $mask-width * 2);
   margin: $mask-width;
-  padding: $mask-width;
+  padding: $sm-hero-padding;
   border: 2px solid colors.$base-text-color-dark;
+
+  @media (min-width: breakpoints.$md-screen-breakpoint) {
+    padding: $mask-width;
+  }
 
   &__section {
     display: flex;
@@ -75,34 +81,72 @@ $theme-switcher-vertical-offset: 4px;
   }
 
   &__text {
+    min-height: 130px;
     display: flex;
     flex-direction: column;
   }
 
   &__title {
-    font-size: 72px;
+    font-size: 48px;
     line-height: 1;
     padding-bottom: 8px;
 
+    @media (min-width: breakpoints.$md-screen-breakpoint) {
+      font-size: 72px;
+    }
+
     &--secondary {
-      font-size: 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      width: min-content;
+      font-size: 24px;
+      line-height: 36px;
       text-transform: uppercase;
-      line-height: 86px;
       text-align: end;
       color: colors.$base-text-color-dark;
+
+      @media (min-width: breakpoints.$sm-screen-breakpoint) {
+        line-height: 32px;
+        font-size: 36px;
+      }
+
+      @media (min-width: breakpoints.$md-screen-breakpoint) {
+        line-height: 44px;
+        width: unset;
+        font-size: 48px;
+      }
+
+      @media (min-width: breakpoints.$lg-screen-breakpoint) {
+        line-height: 60px;
+        font-size: 64px;
+      }
+
+      @media (min-width: breakpoints.$xl-screen-breakpoint) {
+        line-height: 86px;
+        font-size: 96px;
+      }
     }
   }
 
   &__subtitle {
-    font-size: 18px;
-    max-width: 60%;
+    font-size: 14px;
+    max-width: 80%;
+
+    @media (min-width: breakpoints.$md-screen-breakpoint) {
+      font-size: 18px;
+    }
   }
 
   &__popups {
     list-style: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+
+    @media (min-width: breakpoints.$md-screen-breakpoint) {
+      justify-content: space-between;
+    }
   }
 
   &__popup {
@@ -113,6 +157,13 @@ $theme-switcher-vertical-offset: 4px;
     display: flex;
     flex-direction: column;
     justify-content: end;
+    list-style-type: none;
+    font-style: italic;
+
+    @media (min-width: breakpoints.$md-screen-breakpoint) {
+      list-style-type: circle;
+      margin-left: 16px;
+    }
   }
 
   &__outer {

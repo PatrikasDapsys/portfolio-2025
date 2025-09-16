@@ -20,6 +20,8 @@ defineProps<{
 </script>
 
 <style scoped lang="scss">
+@use '../../../styles/partials/_breakpoints';
+
 $icon-size: 24px;
 $hover-text-padding: 6px;
 
@@ -31,6 +33,7 @@ $hover-text-padding: 6px;
   }
 
   &:before {
+    display: none;
     opacity: 0;
     transition: all 0.3s ease;
     content: attr(data-hover);
@@ -42,6 +45,10 @@ $hover-text-padding: 6px;
     top: calc($hover-text-padding * -2);
     pointer-events: none;
     white-space: nowrap;
+
+    @media (min-width: breakpoints.$md-screen-breakpoint) {
+      display: block;
+    }
   }
 
   &:hover {

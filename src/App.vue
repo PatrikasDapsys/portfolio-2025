@@ -11,4 +11,5 @@ import Hero from './pages/hero/Hero.vue'
 <style lang="scss">
 @use './styles/base';
 </style>
-<!-- Gradient background -->
+<!-- TODO: Gradient background -->
+<!-- TODO: css styling order package -->
