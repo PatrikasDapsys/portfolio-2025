@@ -1,4 +1,6 @@
-@use './partials/colors';
+@use './mixins';
+@use './partials/_light-theme';
+@use './partials/_colors';
 
 * {
   box-sizing: border-box;
@@ -12,6 +14,7 @@ body {
   background-color: colors.$base-background-color;
   color: colors.$base-text-color;
   font-weight: 100;
+  @include mixins.transition-mixin(400ms, ease, background-color, color);
 }
 
 a {

@@ -30,6 +30,15 @@ const maskStyles = computed(() => ({
 .mask {
   background-color: colors.$base-background-color;
   z-index: z-index.$mask-z-index;
+  transition:
+    background-color,
+    100ms ease-in-out;
   position: absolute;
+}
+
+.light-theme {
+  .mask {
+    background-color: colors.$light-base-background-color;
+  }
 }
 </style>

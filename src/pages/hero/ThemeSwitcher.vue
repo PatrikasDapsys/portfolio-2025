@@ -36,4 +36,12 @@ const { changeTheme, isTheme } = useTheme()
     color: colors.$base-text-color;
   }
 }
+
+.light-theme {
+  .theme-switcher {
+    &__option {
+      color: colors.$light-base-text-color;
+    }
+  }
+}
 </style>

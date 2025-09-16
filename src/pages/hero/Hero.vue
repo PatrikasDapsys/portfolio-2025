@@ -156,6 +156,7 @@ $theme-switcher-vertical-offset: 4px;
   &__links {
     display: flex;
     flex-direction: column;
+    font-weight: 400;
     justify-content: end;
     list-style-type: none;
     font-style: italic;
@@ -190,6 +191,20 @@ $theme-switcher-vertical-offset: 4px;
       bottom: calc($outer-text-vertical-offset + $theme-switcher-vertical-offset);
       transform: rotate(270deg);
       left: $outer-text-horizontal-offset;
+    }
+  }
+}
+
+.light-theme {
+  .hero-page {
+    &__title {
+      &--secondary {
+        color: colors.$light-base-text-color;
+      }
+    }
+
+    &__subtitle {
+      color: colors.$light-base-text-color-light;
     }
   }
 }

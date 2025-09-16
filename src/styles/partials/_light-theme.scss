@@ -1,0 +1,6 @@
+@use './_colors';
+
+body.light-theme {
+  background-color: colors.$light-base-background-color;
+  color: colors.$light-base-text-color;
+}
