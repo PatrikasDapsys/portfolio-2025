@@ -14,10 +14,28 @@ body {
   background-color: colors.$base-background-color;
   color: colors.$base-text-color;
   font-weight: 100;
+  overflow-x: hidden;
   @include mixins.transition-mixin(400ms, ease, background-color, color);
 }
 
 a {
   color: unset;
   text-decoration: none;
+}
+
+.mouse-effect {
+  position: absolute;
+  pointer-events: none;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  animation: fadeOut 1.2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.5);
+  }
 }
