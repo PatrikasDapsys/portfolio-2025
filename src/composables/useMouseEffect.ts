@@ -30,7 +30,7 @@ const useMouseEffect = (contentContainerRef: Readonly<ShallowRef<HTMLDivElement 
     isAnimating = true
 
     requestAnimationFrame(() => {
-      const el = createElement(e.clientX, e.clientY - MOUSE_OFFSET)
+      const el = createElement(e.pageX, e.pageY - MOUSE_OFFSET)
       elContainer.appendChild(el)
       isAnimating = false
     })

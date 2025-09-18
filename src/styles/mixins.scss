@@ -1,7 +1,9 @@
+@use 'sass:list';
+
 @mixin transition-mixin($duration, $timing, $properties...) {
   $list: ();
   @each $prop in $properties {
-    $list: append($list, #{$prop} #{$duration} #{$timing}, comma);
+    $list: list.append($list, #{$prop} #{$duration} #{$timing}, comma);
   }
   transition: $list;
 }

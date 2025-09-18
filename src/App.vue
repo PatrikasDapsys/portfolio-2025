@@ -1,13 +1,15 @@
 <template>
   <div :ref="contentContainerRefName">
-    <Hero />
+    <HeroPage />
+    <ExperiencePage />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, useTemplateRef } from 'vue'
-import Hero from './pages/hero/Hero.vue'
+import HeroPage from './pages/hero/HeroPage.vue'
 import { useMouseEffect } from './composables/useMouseEffect'
+import ExperiencePage from './pages/experience/ExperiencePage.vue'
 
 const contentContainerRefName = 'content-container'
 
