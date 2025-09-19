@@ -3,14 +3,10 @@
     <h2 class="experience-page__title">Experience</h2>
     <div class="experience-page__content">
       <ExperienceEntry
-        title="BitDegree"
-        paragraph="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla distinctio doloribus quaerat quos, totam molestiae vel iure sunt hic veritatis, nobis iusto culpa! Deserunt et dicta voluptas consectetur ad necessitatibus totam facere aliquam repudiandae ex exercitationem hic non, molestiae illo?
-"
-      />
-      <ExperienceEntry
-        title="Frontend Simplified"
-        paragraph="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla distinctio doloribus quaerat quos, totam molestiae vel iure sunt hic veritatis, nobis iusto culpa! Deserunt et dicta voluptas consectetur ad necessitatibus totam facere aliquam repudiandae ex exercitationem hic non, molestiae illo?
-"
+        v-for="entry in experienceData"
+        :title="entry.title"
+        :date="entry.date"
+        :paragraph="entry.paragraph"
       />
     </div>
     <MaskGroup />
@@ -21,6 +17,7 @@
 import { IdEnum } from '@/enums/id'
 import ExperienceEntry from './components/ExperienceEntry.vue'
 import MaskGroup from './MaskGroup.vue'
+import experienceData from '@/data/experienceData'
 </script>
 
 <style scoped lang="scss">
@@ -39,16 +36,29 @@ import MaskGroup from './MaskGroup.vue'
   position: relative;
 
   @media (min-width: breakpoints.$md-screen-breakpoint) {
+    padding: 0 10%;
+  }
+
+  @media (min-width: breakpoints.$lg-screen-breakpoint) {
     padding: 0 20%;
   }
 
   &__title {
     text-transform: uppercase;
     line-height: 1;
-    font-size: 64px;
-    letter-spacing: 12px;
+    font-size: 32px;
+    letter-spacing: 6px;
     margin-bottom: 64px;
     z-index: z-index.$outer-text-z-index;
+
+    @media (min-width: breakpoints.$sm-screen-breakpoint) {
+      font-size: 48px;
+      letter-spacing: 12px;
+    }
+
+    @media (min-width: breakpoints.$md-screen-breakpoint) {
+      font-size: 64px;
+    }
   }
 
   &__content {

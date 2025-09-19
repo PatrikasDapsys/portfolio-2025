@@ -1,0 +1,9 @@
+enum breakpointsEnum {
+  XS_SCREEN_BREAKPOINT = 320,
+  SM_SCREEN_BREAKPOINT = 425,
+  MD_SCREEN_BREAKPOINT = 768,
+  LG_SCREEN_BREAKPOINT = 1024,
+  XL_SCREEN_BREAKPOINT = 1440,
+}
+
+export { breakpointsEnum }

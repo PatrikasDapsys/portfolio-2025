@@ -2,68 +2,84 @@
   <Mask
     class="mask-group__mask--left"
     :width="maskHorizontal.width"
-    :height="maskHeightHorizontal"
-    :width-measurement="maskHorizontal.unit"
-    :height-measurement="MeasurementsEnum.PERCENTAGE"
+    :height="MASK_HORIZONTAL_HEIGHT"
+    :widthMeasurement="maskHorizontal.widthUnit"
+    :heightMeasurement="MeasurementsEnum.PERCENTAGE"
   />
   <Mask
     class="mask-group__mask--right"
     :width="maskHorizontal.width"
-    :height="maskHeightHorizontal"
-    :width-measurement="maskHorizontal.unit"
-    :height-measurement="MeasurementsEnum.PERCENTAGE"
+    :height="MASK_HORIZONTAL_HEIGHT"
+    :widthMeasurement="maskHorizontal.widthUnit"
+    :heightMeasurement="MeasurementsEnum.PERCENTAGE"
   />
   <Mask
     class="mask-group__mask--top"
-    :width="maskWidthVertical"
+    :width="MASK_VERTICAL_WIDTH"
     :height="topMaskHeight"
-    :width-measurement="MeasurementsEnum.PERCENTAGE"
-    :height-measurement="MeasurementsEnum.PX"
+    :widthMeasurement="MeasurementsEnum.PERCENTAGE"
+    :heightMeasurement="MeasurementsEnum.PX"
   />
   <Mask
     class="mask-group__mask--bottom"
-    :width="maskWidthVertical"
+    :width="MASK_VERTICAL_WIDTH"
     :height="bottomMaskHeight"
-    :width-measurement="MeasurementsEnum.PERCENTAGE"
-    :height-measurement="MeasurementsEnum.PX"
+    :widthMeasurement="MeasurementsEnum.PERCENTAGE"
+    :heightMeasurement="MeasurementsEnum.PX"
   />
 </template>
 
 <script setup lang="ts">
 import Mask from '@/components/Mask.vue'
+import { breakpointsEnum } from '@/enums/breakpoints'
 import { MeasurementsEnum } from '@/enums/measurements'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+
+enum titleMarginEnum {
+  XS = 32,
+  SM = 48,
+  MD = 64,
+}
 
 const CONTAINER_MARGIN = 120
 const HERO_MASK_HEIGHT = 32
-const TITLE_MARGIN = 64
+const MASK_VERTICAL_WIDTH = 100
+const MASK_HORIZONTAL_HEIGHT = 100
 
 const windowWidth = ref(window.innerWidth)
 
+const bottomMaskHeight = ref(32) // TODO
+
 const maskHorizontal = computed(() => {
-  if (windowWidth.value < 758) {
-    return {
-      width: 32,
-      unit: MeasurementsEnum.PX,
-    }
-  }
+  const isMd = windowWidth.value < breakpointsEnum.MD_SCREEN_BREAKPOINT
+  const isLg = windowWidth.value < breakpointsEnum.LG_SCREEN_BREAKPOINT
 
   return {
-    width: 20,
-    unit: MeasurementsEnum.PERCENTAGE,
+    width: isMd ? 32 : isLg ? 10 : 20,
+    widthUnit: isMd ? MeasurementsEnum.PX : MeasurementsEnum.PERCENTAGE,
   }
 })
-const maskHeightHorizontal = ref(100)
-const maskWidthVertical = ref(100)
 
-const topMaskHeight = ref(CONTAINER_MARGIN + HERO_MASK_HEIGHT + TITLE_MARGIN)
+const topMaskHeight = computed(
+  () => getTitleMargin(windowWidth.value) + CONTAINER_MARGIN + HERO_MASK_HEIGHT,
+)
+
 const updateWidth = () => {
   windowWidth.value = window.innerWidth
 }
-const bottomMaskHeight = ref(32)
+
+const getTitleMargin = (width: number) => {
+  if (width < breakpointsEnum.SM_SCREEN_BREAKPOINT) return titleMarginEnum.XS
+  if (width < breakpointsEnum.MD_SCREEN_BREAKPOINT) return titleMarginEnum.SM
+  return titleMarginEnum.MD
+}
 
 onMounted(() => {
   window.addEventListener('resize', updateWidth)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWidth)
 })
 </script>
 

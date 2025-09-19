@@ -1,15 +1,15 @@
 <template>
   <div class="experience-entry">
     <div class="experience-entry__title">{{ title }}</div>
-    <div class="experience-entry__paragraph">{{ paragraph }}</div>
+    <div class="experience-entry__date">{{ date }}</div>
+    <div class="experience-entry__paragraph" v-html="paragraph"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import MaskGroup from '../MaskGroup.vue'
-
 defineProps<{
   title: string
+  date: string
   paragraph: string
 }>()
 </script>
@@ -24,6 +24,7 @@ defineProps<{
   border-left: 1px solid colors.$base-text-color-darkest;
   color: colors.$base-text-color-darkest;
   transition: color 200ms ease-in-out;
+  font-weight: 300;
   @include mixins.transition-mixin(200ms, ease-in-out, border-color, color);
 
   &:hover {
@@ -33,8 +34,14 @@ defineProps<{
 
   &__title {
     font-weight: 400;
+    line-height: 32px;
     font-size: 32px;
-    margin-bottom: 4px;
+  }
+
+  &__date {
+    font-weight: 300;
+    font-size: 14px;
+    margin-bottom: 8px;
   }
 }
 
