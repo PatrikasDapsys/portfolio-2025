@@ -1,6 +1,6 @@
 <template>
   <ul class="page-links">
-    <li class="page-links__link" v-for="entry in popupData">
+    <li class="page-links__link" v-for="entry in popupData" :key="entry.link">
       <Popup
         :iconClass="entry.iconClass"
         :link="entry.link"
