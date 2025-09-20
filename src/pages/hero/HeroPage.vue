@@ -34,8 +34,8 @@
 <!-- TODO: mobile -->
 <script setup lang="ts">
 import { IdEnum } from '@/enums/id'
-import { popupData } from '@/data/heroPopupData'
-import Popup from './components/Popup.vue'
+import popupData from '@/data/popupData'
+import Popup from '../../components/Popup.vue'
 import MaskGroup from './MaskGroup.vue'
 import ThemeSwitcher from './ThemeSwitcher.vue'
 

@@ -1,6 +1,6 @@
 <template>
   <div :id="IdEnum.EXPERIENCE" class="experience-page">
-    <h2 class="experience-page__title">Experience</h2>
+    <PageTitle :title="PAGE_TITLE" />
     <div class="experience-page__content">
       <ExperienceEntry
         v-for="entry in experienceData"
@@ -18,6 +18,9 @@ import { IdEnum } from '@/enums/id'
 import ExperienceEntry from './components/ExperienceEntry.vue'
 import MaskGroup from './MaskGroup.vue'
 import experienceData from '@/data/experienceData'
+import PageTitle from '@/components/PageTitle.vue'
+
+const PAGE_TITLE = 'Experience'
 </script>
 
 <style scoped lang="scss">

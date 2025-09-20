@@ -37,4 +37,4 @@ const popupData = [
   },
 ]
 
-export { popupData }
+export default popupData
