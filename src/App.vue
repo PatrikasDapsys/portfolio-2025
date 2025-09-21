@@ -28,3 +28,4 @@ onMounted(() => {
 <!-- TODO: Loading page -->
 <!-- TODO: Gradient background -->
 <!-- TODO: css styling order package -->
+<!-- TODO: use @ for scss imports -->

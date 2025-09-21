@@ -1,13 +1,15 @@
 <template>
   <div class="contact-page">
     <PageTitle :title="PAGE_TITLE" />
-    <ContactLinks />
+    <ContactLinks class="contact-page__links" />
+    <ContactSection />
   </div>
 </template>
 
 <script setup lang="ts">
 import PageTitle from '@/components/PageTitle.vue'
 import ContactLinks from './ContactLinks.vue'
+import ContactSection from './ContactSection.vue'
 
 const PAGE_TITLE = 'Contact'
 </script>
@@ -32,6 +34,10 @@ $links-gap: 24px;
 
   @media (min-width: breakpoints.$lg-screen-breakpoint) {
     padding: 0 20%;
+  }
+
+  &__links {
+    margin-bottom: 16px;
   }
 }
 </style>

@@ -27,6 +27,7 @@ const PAGE_TITLE = 'Experience'
 @use '../../styles/partials/_colors';
 @use '../../styles/partials/_z-index';
 @use '../../styles/partials/_breakpoints';
+@use '../../styles/partials/_variables';
 
 .experience-page {
   display: flex;
@@ -72,7 +73,7 @@ const PAGE_TITLE = 'Experience'
     gap: 42px;
     align-items: center;
     height: 60%;
-    border: 2px solid colors.$base-text-color-dark;
+    border: variables.$base-border;
   }
 }
 </style>

@@ -20,6 +20,7 @@ import Popup from '../../components/Popup.vue'
 @use '../../styles/partials/_colors';
 @use '../../styles/partials/_z-index';
 @use '../../styles/partials/_breakpoints';
+@use '../../styles/partials/_variables';
 
 $links-gap: 24px;
 
@@ -27,7 +28,7 @@ $links-gap: 24px;
   display: flex;
   width: 100%;
   padding: 32px;
-  border: 2px solid colors.$base-text-color-dark;
+  border: variables.$base-border;
   list-style: none;
   flex-wrap: wrap;
   gap: $links-gap;

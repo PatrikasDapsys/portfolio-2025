@@ -3,4 +3,10 @@ enum IdEnum {
   EXPERIENCE = 'experience',
 }
 
-export { IdEnum }
+enum formIdEnum {
+  EMAIL = 'formEmail',
+  TITLE = 'formTitle',
+  MESSAGE = 'formMessage',
+}
+
+export { IdEnum, formIdEnum }

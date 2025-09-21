@@ -55,6 +55,7 @@ const TITLE = `
 @use '../../styles/partials/_colors';
 @use '../../styles/partials/_z-index';
 @use '../../styles/partials/_breakpoints';
+@use '../../styles/partials/_variables';
 
 $mask-width: 32px;
 $sm-hero-padding: 16px;
@@ -69,7 +70,7 @@ $theme-switcher-vertical-offset: 4px;
   height: calc(100vh - $mask-width * 2);
   margin: $mask-width;
   padding: $sm-hero-padding;
-  border: 2px solid colors.$base-text-color-dark;
+  border: variables.$base-border;
 
   @media (min-width: breakpoints.$md-screen-breakpoint) {
     padding: $mask-width;

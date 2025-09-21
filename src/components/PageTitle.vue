@@ -1,5 +1,5 @@
 <template>
-  <div class="page-title">{{ title }}</div>
+  <h2 class="page-title">{{ title }}</h2>
 </template>
 
 <script setup lang="ts">
